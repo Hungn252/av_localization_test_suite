@@ -19,7 +19,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: hungn252
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
@@ -28,5 +28,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/slam-suite:latest
-            ghcr.io/${{ github.repository_owner }}/slam-suite:${{ github.sha }}
+            ghcr.io/hungn252/slam-suite:latest
+            ghcr.io/hungn252/slam-suite:${{ github.sha }}
