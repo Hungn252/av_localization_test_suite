@@ -3,6 +3,7 @@ FROM ros:humble-ros-base
 # ── System dependencies ───────────────────────────────────────────────────────
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-pip \
+        python3-venv \
         python3-yaml \
         python3-numpy \
         python3-matplotlib \
@@ -11,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ros-humble-geometry-msgs \
         ros-humble-sensor-msgs \
         ros-humble-ros2bag \
-        ros-humble-rosbag2-storage-sqlite3 \
+        ros-humble-rosbag2-storage-default-plugins \
     && rm -rf /var/lib/apt/lists/*
 
 # ── Suite root ────────────────────────────────────────────────────────────────
@@ -39,11 +40,6 @@ RUN python3 -m venv venv/kiss_icp && \
         rosbags==0.9.23 \
         kiss-icp==1.2.3
 
-# ── Bags — largest layer, copied last to maximise cache reuse ─────────────────
-# bags/raw/ and empty scenario dirs are excluded via .dockerignore.
-# Only bags/ideal/kitti/run_01/ (~1.9 GB) is copied.
-COPY bags/ bags/
-
 # ── Source ROS2 for interactive shells ────────────────────────────────────────
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
 
@@ -52,5 +48,6 @@ RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc
 #   /root/suite/user_config.yaml  — user algorithm config  (read-only)
 #   /results                      — output directory        (read-write)
 VOLUME ["/results"]
+VOLUME ["/root/suite/bags"]
 
 ENTRYPOINT ["/root/suite/run_suite.sh"]

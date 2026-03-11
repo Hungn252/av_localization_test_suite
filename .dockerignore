@@ -2,16 +2,8 @@
 .git/
 .gitignore
 
-# ── KITTI raw source data — 13 GB, only needed for kitti_prepare.sh ──────────
-bags/raw/
-
-# ── empty scenario placeholders — not needed in image ────────────────────────
-bags/kitti/
-bags/rain/
-bags/night/
-bags/high_speed/
-bags/gps_denial/
-bags/rain_night/
+# ── Bags — distributed separately, mounted as a volume at runtime ─────────────
+bags/
 
 # ── Python environments — rebuilt inside the image ────────────────────────────
 venv/

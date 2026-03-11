@@ -172,7 +172,7 @@ scenarios:
 
 ## GitHub
 
-Code lives in git. Bags (15 GB) do not — they are baked into the Docker image.
+Code lives in git. Bags are distributed separately and mounted as a volume at runtime.
 
 ```bash
 git init
@@ -190,7 +190,7 @@ git push -u origin main
 
 ### Build and push
 
-Bags must be present locally at build time.
+Bags are not baked into the image — they are mounted at runtime by the user.
 
 ```bash
 ./build.sh ghcr.io/<org>          # GitHub Container Registry
@@ -198,21 +198,17 @@ Bags must be present locally at build time.
 ./build.sh ghcr.io/<org> v1.0.0  # versioned tag
 ```
 
-**What goes in the image** (`bags/ideal/kitti/run_01/` ~1.9 GB, scripts, ground truth, baselines)
-**What is excluded** (`.dockerignore`): `bags/raw/` 13 GB, `venv/`, `results/`, `carla_run/`
+**What goes in the image**: scripts, configs, baselines, ground truth, ROS2, kiss_icp venv
+**What is excluded** (`.dockerignore`): `bags/`, `venv/`, `results/`, `carla_run/`
 
-Final image size: ~3–4 GB.
+Final image size: ~1.5 GB.
 
 ### Layer order (Dockerfile)
-
-Code layers are copied before bags so that script changes don't invalidate the
-1.9 GB bag layer:
 
 ```
 1. System packages + Python deps   (changes rarely)
 2. scripts/, configs/, baselines/  (changes often)
 3. kiss_icp venv                   (changes rarely)
-4. bags/                           (changes rarely)
 ```
 
 ---

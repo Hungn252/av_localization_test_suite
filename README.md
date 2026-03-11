@@ -42,14 +42,18 @@ your algorithm manually before pressing Enter.
 ### 2. Run
 
 ```bash
-# Pull the image
+# 1. Pull the image
 docker pull ghcr.io/<org>/slam-suite:latest
 
-# Run
+# 2. Download the bags (link provided separately) and place them as:
+#      /path/to/bags/ideal/kitti/run_01/
+
+# 3. Run
 docker run --rm \
   --network host \
   -v $(pwd)/my_config.yaml:/root/suite/user_config.yaml:ro \
-  -v /path/to/results:/results \
+  -v /path/to/bags:/root/suite/bags:ro \
+  -v $(pwd)/results:/results \
   ghcr.io/<org>/slam-suite:latest
 ```
 
@@ -65,7 +69,8 @@ docker run --rm --network host myrepo/my-slam:latest
 # Terminal 2 (leave launch_command empty in your config)
 docker run --rm --network host \
   -v $(pwd)/my_config.yaml:/root/suite/user_config.yaml:ro \
-  -v /path/to/results:/results \
+  -v /path/to/bags:/root/suite/bags:ro \
+  -v $(pwd)/results:/results \
   ghcr.io/<org>/slam-suite:latest
 ```
 
@@ -124,7 +129,8 @@ Open an interactive shell inside the container:
 ```bash
 docker run --rm -it --network host \
   -v $(pwd)/my_config.yaml:/root/suite/user_config.yaml:ro \
-  -v /path/to/results:/results \
+  -v /path/to/bags:/root/suite/bags:ro \
+  -v $(pwd)/results:/results \
   --entrypoint bash \
   ghcr.io/<org>/slam-suite:latest
 ```

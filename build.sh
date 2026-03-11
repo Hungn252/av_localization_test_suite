@@ -1,5 +1,5 @@
 #!/bin/bash
-# build.sh — build and push the slam-suite Docker image.
+# build.sh — build and push the Docker image.
 #
 # Usage:
 #   ./build.sh <registry/org> [tag]
