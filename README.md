@@ -43,10 +43,9 @@ your algorithm manually before pressing Enter.
 
 ```bash
 # 1. Pull the image
-docker pull ghcr.io/<org>/slam-suite:latest
+docker pull ghcr.io/hungn252/slam-suite:latest
 
-# 2. Download the bags (link provided separately) and place them as:
-#      /path/to/bags/ideal/kitti/run_01/
+# 2. Download the bags (link provided separately) 
 
 # 3. Run
 docker run --rm \
@@ -60,19 +59,6 @@ docker run --rm \
 `--network host` lets ROS2 DDS reach your algorithm whether it runs on the host
 or in a separate container on the same machine.
 
-**If your algorithm is also in Docker**, start it first in a separate terminal:
-
-```bash
-# Terminal 1
-docker run --rm --network host myrepo/my-slam:latest
-
-# Terminal 2 (leave launch_command empty in your config)
-docker run --rm --network host \
-  -v $(pwd)/my_config.yaml:/root/suite/user_config.yaml:ro \
-  -v /path/to/bags:/root/suite/bags:ro \
-  -v $(pwd)/results:/results \
-  ghcr.io/<org>/slam-suite:latest
-```
 
 ### 3. Results
 
