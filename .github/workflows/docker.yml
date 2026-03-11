@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: self-hosted      # runs on YOUR machine (has the bags)
+    permissions:
+      contents: read
+      packages: write 
 
     steps:
       - name: Checkout code
