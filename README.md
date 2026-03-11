@@ -45,7 +45,7 @@ your algorithm manually before pressing Enter.
 # 1. Pull the image
 docker pull ghcr.io/hungn252/slam-suite:latest
 
-# 2. Download the bags (link provided separately) 
+# 2. Download the bags: https://drive.google.com/drive/folders/1fPZ7qVj9gB_giDGYwVSinZ1u0XgC24sp?usp=sharing
 
 # 3. Run
 docker run --rm \
