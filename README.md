@@ -53,7 +53,7 @@ docker run --rm \
   -v $(pwd)/my_config.yaml:/root/suite/user_config.yaml:ro \
   -v /path/to/bags:/root/suite/bags:ro \
   -v $(pwd)/results:/results \
-  ghcr.io/<org>/slam-suite:latest
+  ghcr.io/hungn252/slam-suite:latest
 ```
 
 `--network host` lets ROS2 DDS reach your algorithm whether it runs on the host
@@ -118,5 +118,5 @@ docker run --rm -it --network host \
   -v /path/to/bags:/root/suite/bags:ro \
   -v $(pwd)/results:/results \
   --entrypoint bash \
-  ghcr.io/<org>/slam-suite:latest
+  ghcr.io/hungn252/slam-suite:latest
 ```
