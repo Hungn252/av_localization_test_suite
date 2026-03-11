@@ -1,0 +1,32 @@
+# ── git ───────────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+
+# ── KITTI raw source data — 13 GB, only needed for kitti_prepare.sh ──────────
+bags/raw/
+
+# ── empty scenario placeholders — not needed in image ────────────────────────
+bags/kitti/
+bags/rain/
+bags/night/
+bags/high_speed/
+bags/gps_denial/
+bags/rain_night/
+
+# ── Python environments — rebuilt inside the image ────────────────────────────
+venv/
+__pycache__/
+*.pyc
+
+# ── Evaluation outputs — generated at runtime, mounted as a volume ────────────
+results/
+runs/
+logs/
+
+# ── internal dev tooling — not needed in the evaluation image ────────────────
+carla_run/
+scorecard/
+
+# ── Artefacts ─────────────────────────────────────────────────────────────────
+*.npy
+*.zip

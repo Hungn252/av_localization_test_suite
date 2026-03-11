@@ -1,0 +1,11 @@
+{
+  "algorithm": "kiss_icp",
+  "scenario": "ideal",
+  "ate_rmse": 20.59575938513803,
+  "ate_mean": 18.49618651539505,
+  "ate_max": 39.84659147481689,
+  "rpe_trans_rmse": 0.11226873680159764,
+  "rpe_trans_mean": 0.10538058904050504,
+  "rpe_rot_rmse_deg": 0.05887998103369173,
+  "latency_mean_ms": 12.0
+}

@@ -1,0 +1,27 @@
+# ── bags — too large for git (baked into Docker image at build time) ──────────
+bags/
+
+# ── Python environments — rebuilt in Docker ───────────────────────────────────
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Evaluation outputs — generated at runtime ─────────────────────────────────
+results/
+runs/
+logs/
+
+# ── Bag artefacts ─────────────────────────────────────────────────────────────
+*.db3
+*.npy
+*.zip
+
+# ── IDE / OS / tooling ────────────────────────────────────────────────────────
+.DS_Store
+.vscode/
+*.swp
+.claude/
+carla_run/
+scripts/achieve/

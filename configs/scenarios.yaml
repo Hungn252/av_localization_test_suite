@@ -1,0 +1,10 @@
+# Scenario registry — add new scenarios here as bags become available.
+scenarios:
+  ideal:
+    bag: bags/ideal/kitti/run_01
+    ground_truth: ground_truth/kitti/2011_10_03_drive_0042.txt
+    lidar_topic: /kitti/velo/pointcloud
+    imu_topic: /kitti/oxts/imu
+    gps_topic: /kitti/oxts/gps
+    duration_s: 130
+    description: "KITTI 2011_10_03 drive 0042 — ideal conditions"

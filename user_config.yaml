@@ -1,0 +1,44 @@
+# user_config.yaml — SLAM Evaluation Suite
+# Copy this file, fill in the fields below, then run:
+#   ./run_suite.sh [path/to/this/file]
+# If no path is given, the suite looks for user_config.yaml in the suite root.
+
+algorithm:
+  # label used in benchmark tables and output directory names
+  name: my_slam
+
+  # ROS2 topic on which your algorithm publishes its pose estimate.
+  # Must be one of the pose_type variants listed below.
+  # Available topics in the bags (scenario: ideal):
+  #   /kitti/velo/pointcloud  — LiDAR (sensor input, not a pose topic)
+  #   /kitti/oxts/imu         — IMU   (sensor input)
+  #   /kitti/oxts/gps         — GPS   (sensor input)
+  # Your algorithm should publish to a topic of your choice; set it here.
+  pose_topic: /slam/odometry
+
+  # Message type published on pose_topic.
+  # Supported values:
+  #   odometry              — nav_msgs/Odometry
+  #   pose_stamped          — geometry_msgs/PoseStamped
+  #   pose_with_covariance  — geometry_msgs/PoseWithCovarianceStamped
+  pose_type: odometry
+
+  # Shell command used to start your algorithm before bag playback.
+  # The suite will run this with:  bash -c "<launch_command>"
+  # ROS2 (source /opt/ros/humble/setup.bash) is NOT automatically prepended
+  # here — include it in your command if needed, e.g.:
+  #   launch_command: "source /opt/ros/humble/setup.bash && ros2 launch my_pkg slam.launch.py"
+  #
+  # If left empty (""), the suite will pause and print a message asking you
+  # to start your algorithm manually before pressing Enter to continue.
+  launch_command: ""
+
+  # Seconds to wait after launch_command starts (or after the user presses
+  # Enter for manual start) before the rosbag begins playing.
+  # Increase this if your algorithm takes a while to initialise.
+  launch_wait_s: 5
+
+# Root directory where all output is written.
+# The suite creates:  <output_path>/<algo_name>/<scenario>/<timestamp>/
+# with poses_tum.txt, ate.json, rpe.json, latency.json, plots/, logs/ inside.
+output_path: /results
