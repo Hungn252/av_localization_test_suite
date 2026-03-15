@@ -48,7 +48,7 @@ docker pull ghcr.io/hungn252/slam-suite:latest
 # 2. Download the bags: https://drive.google.com/drive/folders/1fPZ7qVj9gB_giDGYwVSinZ1u0XgC24sp?usp=sharing
 
 # 3. Run
-docker run --rm \
+docker run -it --rm \
   --network host \
   -v $(pwd)/my_config.yaml:/root/suite/user_config.yaml:ro \
   -v /path/to/bags:/root/suite/bags:ro \
