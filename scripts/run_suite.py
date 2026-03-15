@@ -206,7 +206,9 @@ def run_scenario(scenario_name, scenario_cfg, cfg, aut_dir, scenario_idx, n_scen
             try:
                 input()
             except EOFError:
-                pass
+                warn('No TTY detected — cannot wait for manual algorithm start.')
+                warn('Either set launch_command in your config, or run with docker run -it.')
+                sys.exit(1)
 
         # ── Step 4: start pose recorder ───────────────────────────────────────
         recorder_timeout = duration_s + 30  # generous headroom beyond bag duration
