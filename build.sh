@@ -29,14 +29,6 @@ echo "[build] Image:  $IMAGE"
 echo "[build] Context: $SUITE_DIR"
 echo ""
 
-# Verify bags are present before spending time on the build
-BAG="$SUITE_DIR/bags/ideal/kitti/run_01"
-if [ ! -d "$BAG" ]; then
-    echo "[build] ERROR: bag not found at $BAG"
-    echo "        The bags/ directory is not in git — copy them into the suite before building."
-    exit 1
-fi
-
 echo "[build] Building..."
 docker build -t "$IMAGE" "$SUITE_DIR"
 
